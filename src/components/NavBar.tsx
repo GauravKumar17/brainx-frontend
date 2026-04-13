@@ -50,7 +50,7 @@ function NavBar({ title, searchValue = "", onSearch }: NavBarProps) {
       alert("Content added successfully");
       reset();
       setExpand(false);
-      window.location.reload();
+      //window.location.reload();
     } catch (err) {
       console.error(err);
       alert("Failed to add content");
