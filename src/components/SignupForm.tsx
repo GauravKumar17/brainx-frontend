@@ -2,11 +2,11 @@
 
 import { useForm } from "react-hook-form"
 import { FcGoogle } from "react-icons/fc"
-import { BsApple } from "react-icons/bs"
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Loader from "./ui/Loader"; 
 import { useState } from 'react';
+import { api, API_BASE_URL } from "../lib/api";
+import { FaGithub } from "react-icons/fa";
 
 
 
@@ -17,6 +17,30 @@ type FormValues = {
 }
 type AuthResponse = {
   token: string
+}
+
+function getErrorMessage(error: unknown) {
+  if (typeof error === "object" && error !== null && "response" in error) {
+    const maybeResponse = error.response;
+
+    if (
+      typeof maybeResponse === "object" &&
+      maybeResponse !== null &&
+      "data" in maybeResponse &&
+      typeof maybeResponse.data === "object" &&
+      maybeResponse.data !== null &&
+      "message" in maybeResponse.data &&
+      typeof maybeResponse.data.message === "string"
+    ) {
+      return maybeResponse.data.message;
+    }
+  }
+
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  return "Something went wrong";
 }
 
 
@@ -35,7 +59,7 @@ export default function SignupForm() {
     console.log("Form submitted:", data)
     try {
       setLoader(true); // Set loading state to true
-      const response = await axios.post<AuthResponse>("http://localhost:3000/api/v1/user/signup", data);
+      const response = await api.post<AuthResponse>("/user/signup", data);
       console.log(response.data);
       // Store the token in localStorage or context for later use
       localStorage.setItem("token", response.data.token);
@@ -43,11 +67,11 @@ export default function SignupForm() {
       alert("User created successfully!");
       
       // Redirect to home page after successful signup
-      navigate("/Home");
+      navigate("/home");
 
-    } catch (error: any) {
-      console.error("Error:", error.response?.data || error.message);
-      alert(error.response?.data?.message || "Something went wrong");
+    } catch (error: unknown) {
+      console.error("Error:", error);
+      alert(getErrorMessage(error));
     }finally{
       setLoader(false); // Reset loading state
     }
@@ -55,15 +79,13 @@ export default function SignupForm() {
   }
 
   const handleGoogleSignup = () => {
-    // Implement Google sign-up logic here
-    console.log("Google sign-up")
+    window.location.href = `${API_BASE_URL}/user/auth/google`;
   }
 
  
 
-  const handleAppleSignup = () => {
-    // Implement Apple sign-up logic here
-    console.log("Apple sign-up")
+  const handleGithubSignup = () => {
+    window.location.href = `${API_BASE_URL}/user/auth/github`;
   }
 
   return (
@@ -85,11 +107,11 @@ export default function SignupForm() {
         </button>
         <button
           type="button"
-          onClick={handleAppleSignup}
+          onClick={handleGithubSignup}
           className="flex items-center justify-center gap-3 p-2 border border-gray-300 rounded hover:bg-gray-100"
         >
-          <BsApple className="text-xl" />
-          Continue with Apple
+          <FaGithub className="text-xl" />
+          Continue with GitHub
         </button>
       </div>
 

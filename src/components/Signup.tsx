@@ -11,7 +11,6 @@ import SignupForm from "./SignupForm";
 import VantaBackground from "../assets/animations/Vanta";
 import SignInForm from "./SigninForm";
 import brainx from "../icons/brainx2.png";
-import brainx2 from "../icons/brainxTransp.png";
 
 
 

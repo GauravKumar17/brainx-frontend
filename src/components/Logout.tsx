@@ -1,6 +1,4 @@
 import { useNavigate } from "react-router-dom";
-// import Button from "./ui/Button";
-import ReferIcon from "../icons/refer.svg";
 
 function LogoutButton() {
   const navigate = useNavigate();

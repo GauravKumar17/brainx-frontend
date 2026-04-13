@@ -7,6 +7,7 @@ interface ButtonProps {
     startIcon?: React.ReactNode;
     endIcon?: React.ReactNode;
     onClick?: () => void;
+    type?: "button" | "submit" | "reset";
 }
 
 const VariantStyles = {
@@ -24,7 +25,7 @@ const SizeStyles = {
 
 function Button(props : ButtonProps) {
     return (  
-        <button onClick={props.onClick} className={`${VariantStyles[props.variant]} ${SizeStyles[props.size]} ${props.startIcon} `} >{props.startIcon} {props.title}{props.endIcon}</button>
+        <button type={props.type ?? "button"} onClick={props.onClick} className={`${VariantStyles[props.variant]} ${SizeStyles[props.size]} ${props.startIcon} `} >{props.startIcon} {props.title}{props.endIcon}</button>
     );
 }
 

@@ -31,10 +31,10 @@ function SideBar() {
                 <div className="text-white text-2xl mb-2   ">{username}</div>
                 </div>
                 
-                 <div className="tweets flex gap-4 pl-3 h-[6vh] text-xl items-center hover:text-blue-600 hover:underline hover:bg-black hover:rounded-xl"><img src={SettingIcon} alt="Tweet" className="
-                h-8 w-8  " /> <Link to="/home/tweets">Setting</Link></div>
-                <div className="tweets flex gap-4 pl-3 h-[6vh]  text-xl  items-center hover:text-blue-600 hover:underline hover:bg-black hover:rounded-xl"><img src={ReferIcon} alt="Tweet" className="
-                h-8 w-8  " /> <Link to="/home/tweets">Refer</Link></div>
+                 <div className="tweets flex gap-4 pl-3 h-[6vh] text-xl items-center hover:text-blue-600 hover:underline hover:bg-black hover:rounded-xl"><img src={SettingIcon} alt="Settings" className="
+                h-8 w-8  " /> <Link to="/home/settings">Setting</Link></div>
+                <div className="tweets flex gap-4 pl-3 h-[6vh]  text-xl  items-center hover:text-blue-600 hover:underline hover:bg-black hover:rounded-xl"><img src={ReferIcon} alt="Refer" className="
+                h-8 w-8  " /> <Link to="/home/refer">Refer</Link></div>
                 <div className="tweets flex gap-4 pl-3 h-[6vh]  text-xl  items-center hover:text-blue-600 hover:underline hover:bg-black hover:rounded-xl"><img src={LogoutIcon} alt="Tweet" className="
                 h-7 w-7  " /><LogoutButton /></div>
                 </div>
